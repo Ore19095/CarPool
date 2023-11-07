@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--create a register form for my django proyect-->
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Register</title>
+
+    <!-- Bootstrap CSS -->
+
+    <!-- center the form and put username over password -->
+
+    <!-- put button at the bottom-->
+
+    
+   <!--external css file-->
+    <link rel="stylesheet" href="{% static 'form.css' %}">
+
+</head>
+
+<body>
+    
+    <form action="/registry/" method="post">
+        {% csrf_token %}
+        <h1 style="text-align: center;">Nuevo Usuario</h1>
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+
+        <!--add a confirmation password mail and celphone fields-->
+
+        <input type="password" name="password2" placeholder="Confirmar Contraseña" required>
+        <input type="text" name="mail" placeholder="Correo Electronico" required>
+        <input type="tel" name="celphone" placeholder="Celular" required>
+
+        <input type="submit" value="Register">
+        <!-- put optional message when passwords dont match-->
+
+        <ul>
+            {% for error in warning %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <!-- add link to registry page-->
+         Ya tienes cuenta? inicia sesion <a href="/">aqui</a>
+
+    </form>
+</html>
+

@@ -1,0 +1,62 @@
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden */
+    background-color: #333;
+    transition: left 0.3s;
+    overflow-y: auto;
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+/* Sidebar Content Styles */
+.sidebar-content {
+    padding: 20px;
+    color: #fff;
+}
+
+/* Sidebar Button Styles */
+.sidebar-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-content li {
+    margin-bottom: 10px;
+}
+
+.sidebar-content a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #555;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-content a:hover {
+    background-color: #777;
+}
+
+/* Toggle Button Styles */
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 24px; /* Increased font size to make it larger */
+    padding: 10px; /* Increased padding to make it larger */
+}
+
+/* Page Content Styles */
+.page-content {
+    margin-left: 260px; /* Adjust for the sidebar width */
+    padding: 20px;
+}

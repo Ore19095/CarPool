@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    {% load static %}
+    <!-- Include the sidebar CSS -->
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+
+    <!-- Main Content Styles -->
+    <style>
+        /* Center content both horizontally and vertically */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        /* Styles for the main content */
+        .page-content {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-content h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .page-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        /* Styles for the welcome message */
+        .welcome-message {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Include the sidebar HTML -->
+    <div id="sidebar-container">
+
+        <!-- This is where the sidebar from sidebar.html will be included -->
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="page-content" id="main-content">
+        <h1>Bienvenido a CUCV Carpool, {{ name }}</h1>
+        <p>
+            
+        </p>
+    </div>
+
+    <!-- Include the sidebar JavaScript -->
+    <script src="{% static 'js/sidebar.js' %}" ></script>
+
+    <style>
+        /* Adjust main content width when sidebar is open */
+        .page-content {
+    transition: margin-left 0.3s;
+    margin-left: 0; /* Initially, the main content has no margin */
+}
+    </style>
+</body>
+</html>

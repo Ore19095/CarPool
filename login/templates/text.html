@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--Djanto template where shows the value of two variables username and password
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <!-- center the form and put username over password -->
+    <!-- put button at the bottom-->
+    
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+        <h1>Login</h1>
+        <!--Put username and pawword variables in h2-->
+        <h2>Username: {{ name }}</h2>
+        <h2>Password: {{ password }}</h2>
+</body>
+
+</html>
+

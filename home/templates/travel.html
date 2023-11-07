@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <!-- center the form and put username over password -->
+    <!-- put button at the bottom-->
+    
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+        input[type=submit] {
+            background-color:#555;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #7c7c7c;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+<body>
+    
+
+    <div id="sidebar-container">
+
+        <!-- This is where the sidebar from sidebar.html will be included -->
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+    </div>
+    <div class="page-content" id="main-content">
+        <form action="/" method="post">
+            {% csrf_token %}
+            <h1 style="text-align: center;">Publicar Viaje</h1>
+            <label for="destino">destino:</label>
+            
+            <select name="destino">
+                <option value="UVG">UVG</option>
+                <option value="CUCV">CUCV</option>
+            </select>
+            <br>
+            <br>
+            <label for="hora"><h3>Hora de salida:</h3></label>
+            <input type="time" name="hora" placeholder="Hora de salida" required>
+            <input type="date" name="fecha" placeholder="Hora de salida" required>
+            <input type="submit" value="Publicar">
+            
+        </form>
+
+    </div>
+    
+
+    <script src="{% static 'js/sidebar.js' %}" ></script>
+
+
+</body>
+</body>
+</html>
