@@ -11,6 +11,10 @@ def logout(request):
     del request.session['username']
     return render(request, 'login.html')
 
+def history_travel(request):
+    
+    return render(request, 'history_travel.html')
+
 def new_travel(request):
     return render(request, 'new_travel.html')
 
