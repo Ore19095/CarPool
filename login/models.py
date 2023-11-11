@@ -10,4 +10,4 @@ class User(models.Model):
     phone = models.CharField(max_length=8)
     # create a string representation of the user model
     def __str__(self):
-        return self.username + " " + self.password + " " + self.email + " " + self.phone + " " + self.address + " " + self.city + " " + self.state + " " + self.zipcode + " " + self.country
+        return self.username + " " + self.password + " " + self.email + " " + self.phone #+ " " + self.address + " " + self.city + " " + self.state + " " + self.zipcode + " " + self.country
