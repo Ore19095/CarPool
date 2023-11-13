@@ -62,8 +62,9 @@ def register(request):
         if  contexto['warning'] :
             return render(request, 'register.html',contexto)
         
+        contexto['user_created'] = True 
         user_save.save()
-        return HttpResponse('User saved')
+        return redirect('',contexto)
     
     return render(request, 'register.html')
 
