@@ -10,7 +10,7 @@ def home(request):
         person = User.objects.get(username=request.session['username'])
 
         # create a travel object
-        new_travel = Travels(date=date, time=time, to=to, person=person)
+        new_travel = Travels(date=date, time=time, to=to, driver=person)
         new_travel.save()
 
     context = {'name': request.session['username']}
