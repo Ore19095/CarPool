@@ -94,11 +94,11 @@ def new_travel(request):
     context['user'] = user
     return render(request, 'new_travel.html',context)
 
-def contact(request):
+def about_us(request):
     context = {'name': request.session['username']}
     
     user = User.objects.get(username=request.session['username'])
     context['user'] = user
     # Obtain the informa
     # user = User.objects.filter  , , {'users': user}
-    return render(request, 'contact.html',context)
+    return render(request, 'about_us.html',context)

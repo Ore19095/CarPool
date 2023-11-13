@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     left: -250px; /* Initially hidden */
-    background-color: #333;
+    background-color: #dedede;
     transition: left 0.3s;
     overflow-y: auto;
 }
@@ -59,4 +59,17 @@
 .page-content {
     margin-left: 260px; /* Adjust for the sidebar width */
     padding: 20px;
+}
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+p {
+    font-size: 14px; /* Cambia el tamaño de la fuente para los párrafos */
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #444; /* Cambia el color del texto para los encabezados */
+    font-weight: bold; /* Hace que los encabezados sean negritas */
 }

@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre Nosotros</title>
+    <!-- Bootstrap CSS -->
+    <!-- center the form and put username over password -->
+    <!-- put button at the bottom-->
+    
+     <!-- Main Content Styles -->
+     <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+            margin: 10;
+        }
+        p {
+            font-size: 14px; /* Cambia el tamaño de la fuente para los párrafos */
+            margin: 10px 0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #444; /* Cambia el color del texto para los encabezados */
+            font-weight: bold; /* Hace que los encabezados sean negritas */
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<body>
+    <div id="sidebar-container">
+        <!-- This is where the sidebar from sidebar.html will be included -->
+        {% if user.is_passenger %}
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar_users.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+        {% else %}
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+        {% endif %}
+    </div>
+
+        <div id="main-content" class="page-content" style="display: flex; flex-direction: column; justify-content: center;">
+                    <h1>Sobre Nosotros</h1>
+                    <p>La Plataforma de Carpool es un proyecto desarrollado por estudiantes de la Universidad del Valle de Guatemala para el curso de Gestión de Proyectos. El proyecto surge como una posible solución a los problemas de transporte que enfrentan los estudiantes de la UVG, más especificamente los residentes del Centro Universitario Ciudad Vieja. Entre estos problemas se encuentran la falta de estacionamiento por parte de la Universidad y los costos de transporte que deben asumir los estudiantes si utilizan alternativas como Uber o taxis aunado a la inseguridad del transporte público. </p>
+                    <p>    
+                    Debido a lo anterior el proyecto tiene como objetivo el facilitar la coordinación del carpool entre estudiantes del Centro Universitario Ciudad Vieja, mejorando así la comunicación entre aquellos con vehículo y aquellos que necesitan transporte. Para lograr esto se ha creado una plataforma en línea que permite a los estudiantes compartir sus horarios de salida y disponibilidad para coordinar el carpool de manera eficiente.
+                    </p>
+                
+                    <p>¡Únete a nuestra comunidad y haz que tu viaje a la universidad sea más conveniente y económico!</p>
+
+                    <h2>Nuestros colaboradores</h2> 
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="{% static 'Picture/UVG.png' %}" alt="UVG logo" style="width: 150px; height: 200px;">
+                    </div>
+                    <p> El proyecto ha sido desarrollado por estudiantes de la Universidad del Valle de Guatemala. 
+                        Los estudiantes que han participado en el desarrollo del proyecto son los siguientes: </p>
+                    
+                    <h3>Equipo de investigación</h3>
+                    <div  style="display: flex; align-items: center; justify-content: center;" id="colaboradores">
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/AO_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Adrían Calvo</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">cal19744@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/DM_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Angelo Machorro</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">mac19609@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/DM_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Juan Lam</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">lam18609@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/DM_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Saúl de León</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">dele19408@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Desarrolladores de la Plataforma</h3>
+                    <div style="display: flex; align-items: center; justify-content: center;" id="colaboradores1">
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/DM_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Daniel Mundo</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">mun19508@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                {% comment %} <img src="{% static 'Picture/DM_picture.png' %}" alt="Profile picture" style="width:100px;height:100px;"> {% endcomment %}
+                                <div style="margin-left: 10px;">
+                                    <p><strong>Nombre:</strong> Angel Orellana</p>
+                                    {% comment %} <p><strong>Tel:</strong> +502 5460 5224</p> {% endcomment %}
+                                    <p><strong>Correo:</strong> <span style="color: blue;">ore19095@uvg.edu.gt</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <footer>
+            <p>&copy; 2023 Plataforma de Carpool</p>
+        </footer>
+    </div>
+
+    <!-- Main Content Scripts -->
+
+
+        <script src="{% static 'js/sidebar.js' %}" ></script>
+        <style>
+            /* Adjust main content width when sidebar is open */
+            .page-content {
+            transition: margin-left 0.3s;
+            margin-left: 0; /* Initially, the main content has no margin */
+            }
+        </style>
+</body>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,66 +7,61 @@
     <!-- Bootstrap CSS -->
     <!-- center the form and put username over password -->
     <!-- put button at the bottom-->
-    
     <style>
         body {
             background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
         }
-                form {
-                    width: 300px;
-                    margin: 0 auto;
-                    background-color: #fff;
-                    padding: 20px;
-                    border-radius: 10px;
-                    margin-top: 100px;
-                }
-                input {
-                    width: 100%;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    margin-bottom: 20px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    font-size: 15px;
-                }
-                input[type=submit] {
-                    background-color:#555;
-                    color: #fff;
-                    border: none;
-                    cursor: pointer;
-                }
-                input[type=submit]:hover {
-                    background-color: #7c7c7c;
-                }
+        p {
+            font-size: 14px; /* Cambia el tamaño de la fuente para los párrafos */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #444; /* Cambia el color del texto para los encabezados */
+            font-weight: bold; /* Hace que los encabezados sean negritas */
+        }
+        </style>
+    <link rel="stylesheet" href="{% static 'form.css' %}">
 
-                .banner {
-                    font-size: 24px;
-                    font-weight: bold;
-                    text-align: center;
-                }
-            </style>
+</head>
+<body>
+    <!-- Display banner when user_created is true -->
+    {% comment %} {% if user_created %}
+        <div class="banner">usuario creado de forma exitosa</div>
+    {% endif %} {% endcomment %}
 
-        </head>
-        <body>
-            <!-- Display banner when user_created is true -->
-            {% if user_created %}
-                <div class="banner">usuario creado de forma exitosa</div>
-            {% endif %}
-            
-            <form action="/" method="post">
-                {% csrf_token %}
-                <h1 style="text-align: center;">Iniciar sesión</h1>
-                <input type="text" name="username" placeholder="Usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <input type="submit" value="Login">
-                
-                
-                <!-- add link to registry page-->
-                No tiene cuenta aún? registrate <a href="/registry/">aqui</a>
-                <br>
-                <!-- add link to forgot password page-->
-                Olvidaste tu contraseña? haz click <a href="/forgot/">aqui</a>
+    <!-- Display Django messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="banner" style="
+                padding: 15px;
+                background-color: 
+                    {% if message.tags == 'success' %}#4CAF50
+                    {% elif message.tags == 'error' %}#f44336
+                    {% elif message.tags == 'warning' %}#ff9800
+                    {% else %}#2196F3
+                    {% endif %};
+                color: white;
+                margin-bottom: 15px;
+            ">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
+    <form action="/" method="post">
+        {% csrf_token %}
+        <h1 style="text-align: center;">Iniciar sesión</h1>
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="submit" value="Login">
+        
+        <!-- add link to registry page-->
+        No tiene cuenta aún? registrate <a href="/registry/">aqui</a>
+        <br>
+        <!-- add link to forgot password page-->
+        Olvidaste tu contraseña? haz click <a href="/forgot/">aqui</a>
     </form>
 
 </body>

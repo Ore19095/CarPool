@@ -1,24 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer Contraseña</title>
+    <style>
+    body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+    p {
+        font-size: 14px; /* Cambia el tamaño de la fuente para los párrafos */
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #444; /* Cambia el color del texto para los encabezados */
+        font-weight: bold; /* Hace que los encabezados sean negritas */
+    }
+    </style>
+    <link rel="stylesheet" href="{% static 'form.css' %}">
 </head>
 <body>
-    <h1>Restablecer Contraseña</h1>
     <form method="POST">
+        <h1 style="text-align: center;">Restablecer Contraseña</h1>
         {% csrf_token %}
-        <label for="username">Usuario:</label>
-        <input type="text" name="username" required>
+        {% comment %} <label for="username">Usuario:</label> {% endcomment %}
+        <input type="text" name="username" placeholder= "Usuario" required>
         <br>
-        <label for="new_password">Nueva Contraseña:</label>
-        <input type="password" name="new_password" required>
+        {% comment %} <label for="new_password">Nueva Contraseña:</label> {% endcomment %}
+        <input type="password" name="new_password" placeholder="Nueva Contraseña" required>
         <br>
-        <label for="confirm_password">Confirmar Contraseña:</label>
-        <input type="password" name="confirm_password" required>
+        {% comment %} <label for="confirm_password">Confirmar Contraseña:</label> {% endcomment %}
+        <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
         <br>
-        <button type="submit">Restablecer Contraseña</button>
+        <input type="submit" value="Restablecer"></input>
+        <p>Ya tienes cuenta? inicia sesion <a href="/">aqui</a></p>
     </form>
 </body>
 </html>

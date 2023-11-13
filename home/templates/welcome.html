@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Inicio</title>
     {% load static %}
     <!-- Include the sidebar CSS -->
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
@@ -16,6 +16,7 @@
         body {
             display: flex;
             justify-content: center;
+            font-family: Arial, sans-serif;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -42,9 +43,26 @@
 
         /* Styles for the welcome message */
         .welcome-message {
+            font-family: Arial, sans-serif;
             font-size: 24px;
             color: #333;
         }
+        .background-image-1 {
+            background-image: url("{% static 'Picture/CIT_UVG.jpg' %}");
+            height: 45vh; /* Ajusta esto a la altura que desees */
+            background-position: center;
+
+            background-size: cover;
+        }
+    
+        .background-image-2 {
+            background-image: url("{% static 'Picture/CUCV_parqueo.jpg' %}");
+            height: 100vh; /* Ajusta esto a la altura que desees */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
     </style>
 
 </head>
@@ -76,13 +94,14 @@
     </div>
 
     <!-- Main Content -->
-    <div class="page-content" id="main-content">
+    <div class="background-image-1">
+    <div class="page-content" id="main-content" style="display: flex; flex-direction: column; justify-content: center;">
+        {% comment %} <img src="{% static 'Picture/CIT_UVG.jpg' %}" alt="CIT UVG" style="width: 350px; height: 200px;"> {% endcomment %}
+       
         <h1>Bienvenido a CUCV Carpool, {{ name }}</h1>
-        <p>
-            
-        </p>
+        {% comment %} <img src="{% static 'Picture/CUCV_parqueo.jpeg' %}" alt="Parqueo CUCV" style="width: 300px; height: 200px;"> {% endcomment %}
     </div>
-
+    </div>
     <!-- Include the sidebar JavaScript -->
     <script src="{% static 'js/sidebar.js' %}" ></script>
 

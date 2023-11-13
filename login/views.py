@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 from django.template import Template
+from django.contrib import messages
 
 # Create your views here.
 def form_css(request):
@@ -26,7 +27,8 @@ def login(request):
             request.session['username'] = username
             return redirect('home/')
         else:
-            return HttpResponse('User not found')
+            messages.error(request, 'El usuario o contraseña son incorrectos')
+            return redirect('login')
     
     context['user_created'] = request.session.get('user_created', False)	
     return render(request, 'login.html', context)
@@ -92,7 +94,8 @@ def register(request):
         if  contexto['warning'] :
             return render(request, 'register.html',contexto)
         
-        request.session['user_created'] = True 
+        request.session['user_created'] = True
+        messages.success(request, 'El usuario se ha creado con éxito.')
         user_save.save()
         return redirect('/',contexto)
     
@@ -122,6 +125,7 @@ def forgot(request):
         
         # Se actualiza la contraseña
         user.update(password=new_password)
+        messages.success(request, 'La contraseña se ha restablecido con éxito.')
         return redirect('login')
     
     return render(request, 'forgot.html')
