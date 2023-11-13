@@ -47,8 +47,18 @@ def register(request):
         password2 = request.POST.get('password2')
         email = request.POST.get('mail')
         phone = request.POST.get('celphone')
+        is_passenger = request.POST.get('type') == 'Pasajero'
+        
+        asientos = 0
+        if not is_passenger:
+            asientos = request.POST.get('n_disponibles')
 
-        user_save = User(username=username, password=password, email=email, phone=phone)
+        user_save = User(username=username,
+                        password=password,
+                        email=email,
+                        phone=phone,
+                        is_passenger=is_passenger,
+                        asientos_disponibles=asientos)
         # i need verify if the user exists
 
         user = User.objects.filter(username=username)
