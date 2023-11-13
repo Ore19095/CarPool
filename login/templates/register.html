@@ -28,12 +28,18 @@
         {% csrf_token %}
         <h1 style="text-align: center;">Nuevo Usuario</h1>
         
-        <div id="user_type" style= 'block'>
-            <input type="radio" id="pasajero" name="type" value="Pasajero" checked>
-            <label for="pasajero" style="display: inline-block; margin-right: 5px;">Pasajero</label>
-            <input type="radio" id="conductor" name="type" value="Conductor">
-            <label for="conductor" style="display: inline-block;">Conductor</label>
-        </div>
+        <select name="type" id="type" style="
+            background-color: #f8f9fa; 
+            color: #343a40; 
+            font-size: 16px; 
+            border: none; 
+            padding: 10px; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        ">
+            <option value="Pasajero">Pasajero</option>
+            <option value="Conductor">Conductor</option>
+        </select>
 
 
         <input type="text" name="username" placeholder="Usuario" required>
@@ -55,14 +61,14 @@
         </div>
 
         <script>
-            const conductorRadio = document.getElementById('conductor');
-            const conductorFields = document.getElementById('conductor-fields');
+            var type = document.getElementById("type");
+            var conductorFields = document.getElementById("conductor-fields");
 
-            conductorRadio.addEventListener('change', () => {
-                if (conductorRadio.checked) {
-                    conductorFields.style.display = 'block';
+            type.addEventListener("change", function() {
+                if (type.value == "Conductor") {
+                    conductorFields.style.display = "block";
                 } else {
-                    conductorFields.style.display = 'none';
+                    conductorFields.style.display = "none";
                 }
             });
         </script>
