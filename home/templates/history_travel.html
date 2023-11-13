@@ -67,21 +67,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Driver</th>
-                    <th>Passengers</th>
+                    <th>Fecha</th>
+                    <th>Destino</th>
+                    <th>Conductor</th>
+                    <th>Disponible</th>
                 </tr>
             </thead>
             <tbody>
                 {% for travel in travels %}
                     <tr>
                         <td>{{ travel.date }}</td>
-                        <td>{{ travel.from }}</td>
                         <td>{{ travel.to }}</td>
                         <td>{{ travel.driver }}</td>
-                        <td>{{ travel.passengers }}</td>
+                        <td>{{ travel.n_disponibles }}</td>
                     </tr>
                 {% empty %}
                     <tr>
