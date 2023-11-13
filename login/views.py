@@ -18,9 +18,10 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
+        
         # check if the user exists
-        user = User.objects.filter(username=username, password=password)
+        user = User.objects.filter(username=username,
+                                    password=password)
         if user:
             request.session['username'] = username
             return redirect('home/')
@@ -56,13 +57,26 @@ def register(request):
         asientos = 0
         if not is_passenger:
             asientos = request.POST.get('n_disponibles')
-
-        user_save = User(username=username,
+            car_id = request.POST.get('placa')
+            car_branch = request.POST.get('marca')
+            car_type = request.POST.get('modelo')
+            car_color = request.POST.get('color')
+            user_save = User(username=username,
                         password=password,
                         email=email,
                         phone=phone,
                         is_passenger=is_passenger,
-                        asientos_disponibles=asientos)
+                        asientos_disponibles=asientos,
+                        car_id=car_id,
+                        car_branch=car_branch,
+                        car_type=car_type,
+                        car_color=car_color)
+        else:
+            user_save = User(username=username,
+                        password=password,
+                        email=email,
+                        phone=phone,
+                        is_passenger=is_passenger)
         # i need verify if the user exists
 
         user = User.objects.filter(username=username)

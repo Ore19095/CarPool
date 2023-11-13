@@ -41,6 +41,25 @@
             font-size: 24px;
             color: #333;
         }
+
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    margin-bottom: 1px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 15px;
+                }
+                input[type=submit] {
+                    background-color:#555;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                }
+                input[type=submit]:hover {
+                    background-color: #7c7c7c;
+                }
     </style>
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 </head>
@@ -93,48 +112,168 @@
                 background-color: #f2f2f2;
             }
         </style>
-        {% if user.is_passanger == 1 %}
-            <h1>Viajes Disponibles</h1>
-        {% else %}
-            <h1>Mis Viajes</h1>
-        {% endif %}
+    {%if user.is_passenger%}
+    <h2>Viajes disponibles</h2>
         <table>
             <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Destino</th>
+                    {% if user.is_passenger %}
                     <th>Conductor</th>
                     <th>Disponible</th>
-                    {% if user.is_passanger %}
                         <th>Unirse</th>
+                    {% else %}
+                        <th>Pasajeros</th>
+                        <th>Disponible</th>
+                        <th>Eliminar</th>
                     {% endif %}
                 </tr>
             </thead>
             <tbody>
                 {% for travel in travels %}
                     <tr>
-                        <td>{{ travel.date }}</td>
+                        <td >{{ travel.date }}</td>
                         <td>{{ travel.time }}</td>
                         <td>{{ travel.to }}</td>
+                        {% if user.is_passenger %}
                         <td>{{ travel.driver }}</td>
-                        <td>{{ travel.n_disponibles }}</td>
-                        {% if user.is_passanger %}
+                        {% endif %}
+                        <td>{{ travel.free_seats }}</td>
+                        
+                        
+                        {% if user.is_passenger %}
                             <td>
-                                {% if user.is_passanger %}
-                                    <button>Unirse</button>
-                                {% endif %}
+                                
+                        <!-- Add a button that sends a value to a URL when pressed -->
+                        <form action="/home/history_travel/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="add" value="1">
+                            <input type="hidden" name="travel_id" value="{{ travel.id }}">
+                            <input type="submit" value="+">
+                        </form>
+                    
                             </td>
                         {% endif %}
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="{% if user.is_passanger %}6{% else %}5{% endif %}">No travel history found.</td>
+                        <td colspan="{% if user.is_passanger %}6{% else %}5{% endif %}">No te has asignado a viajes</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <h2>Mis Viajes</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Destino</th>
+                     <th>Conductor</th>
+                     <th>Disponible</th>
+                     <th>vehiculo</th>
+                    <th>Salir</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in my_travels %}
+                    <tr>
+                        <td >{{ travel.date }}</td>
+                        <td>{{ travel.time }}</td>
+                        <td>{{ travel.to }}</td>
+                        <td>{{ travel.driver }}</td>
+                        
+                        <td>{{ travel.free_seats }}</td>
+                        <td>{{ travel.driver.car_type }}
+                            <br>
+                            {{ travel.driver.car_branch }}
+                            <br>
+                            {{ travel.driver.car_color }}
+                            <br>
+                            {{ travel.driver.car_id }}
+                        </td>
+                        {% if user.is_passenger %}
+                            <td>
+                                
+                        <!-- Add a button that sends a value to a URL when pressed -->
+                        <form action="/home/history_travel/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="add" value="0">
+                            <input type="hidden" name="travel_id" value="{{ travel.id }}">
+                            <input type="submit" value="+">
+                        </form>
+                    
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_passanger %}6{% else %}5{% endif %}">No te has asignado a viajes</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {%else%}
+
+        <h2>Mis Viajes</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Destino</th>
+                    {% if user.is_passenger %}
+                     <th>Conductor</th>
+                     <th>Disponible</th>
+                        <th>Unirse</th>
+                    {% else %}
+                        <th>Pasajeros</th>
+                        <th>Disponible</th>
+                        <th>Eliminar</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in my_travels %}
+                    <tr>
+                        <td >{{ travel.0.date }}</td>
+                        <td>{{ travel.0.time }}</td>
+                        <td>{{ travel.0.to }}</td>
+                        <td>{%for pass in travel.1 %}
+                            {{pass}}<br>
+                            {%endfor%}
+                        </td>
+                        <td>{{ travel.0.free_seats }}</td>
+                        
+                            <td>
+                                
+                        <!-- Add a button that sends a value to a URL when pressed -->
+                        <form action="/home/history_travel/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="add" value="2">
+                            <input type="hidden" name="travel_id" value="{{ travel.0.id }}">
+                            <input type="submit" value="-">
+                        </form>
+                    
+                            </td>
+                        
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_passanger %}6{% else %}5{% endif %}">No te has asignado a viajes</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {%endif%}
     </div>
+
+    
 
     <!-- Include the sidebar JavaScript -->
     <script src="{% static 'js/sidebar.js' %}" ></script>
