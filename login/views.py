@@ -9,7 +9,8 @@ def form_css(request):
 
 def login(request): 
     # add an user verification here
-
+    context = {}
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -21,8 +22,9 @@ def login(request):
             return redirect('home/')
         else:
             return HttpResponse('User not found')
-
-    return render(request, 'login.html')
+    
+    context['user_created'] = request.session.get('user_created', False)	
+    return render(request, 'login.html', context)
 
 # when the user clicks the login button, the init page is loaded and 
 # displays the user's name and password
@@ -62,9 +64,9 @@ def register(request):
         if  contexto['warning'] :
             return render(request, 'register.html',contexto)
         
-        contexto['user_created'] = True 
+        request.session['user_created'] = True 
         user_save.save()
-        return redirect('',contexto)
+        return redirect('/',contexto)
     
     return render(request, 'register.html')
 
