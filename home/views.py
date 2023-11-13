@@ -4,8 +4,8 @@ from home.models import Travels
 # Create your views here.
 def home(request):
     if request.method == 'POST':
-        date = request.POST.get('date')
-        time = request.POST.get('time')
+        date = request.POST.get('fecha')
+        time = request.POST.get('hora')
         to = request.POST.get('destino')
         person = User.objects.get(username=request.session['username'])
 
