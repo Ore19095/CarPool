@@ -18,12 +18,15 @@ def home(request):
     return render(request, 'welcome.html',context)
 
 def logout(request):
-    del request.session['username']
+    del request.session
     return render(request, 'login.html')
 
 def history_travel(request):
-    
-    return render(request, 'history_travel.html')
+    # Obtain the informa
+    travels = Travels.objects.all()
+    context = {'travels': travels}
+    return render(request, 'history_travel.html', context)   
+
 
 def new_travel(request):
     return render(request, 'new_travel.html')
