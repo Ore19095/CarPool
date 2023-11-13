@@ -27,6 +27,15 @@
     <form action="/registry/" method="post">
         {% csrf_token %}
         <h1 style="text-align: center;">Nuevo Usuario</h1>
+        
+        <div id="user_type" style= 'block'>
+            <input type="radio" id="pasajero" name="type" value="Pasajero" checked>
+            <label for="pasajero" style="display: inline-block; margin-right: 5px;">Pasajero</label>
+            <input type="radio" id="conductor" name="type" value="Conductor">
+            <label for="conductor" style="display: inline-block;">Conductor</label>
+        </div>
+
+
         <input type="text" name="username" placeholder="Usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
 
@@ -36,21 +45,21 @@
         <input type="text" name="mail" placeholder="Correo Electronico" required>
         <input type="tel" name="celphone" placeholder="Celular" required>
         <!--add a type of account button-->
-        <select name="type" id="type" style="background-color: #f8f9fa; color: #343a40; font-size: 16px;">
-            <option value="Pasajero">Pasajero</option>
-            <option value="Conductor">Conductor</option>
-        </select>
-        
+
         <div id="conductor-fields" style="display: none;">
-            <input type="text" name="n_disponibles" placeholder="Asientos disponibles">
+            <input type="text" name="placa" placeholder="Placa" required>
+            <input type="text" name="marca" placeholder="Marca" required>
+            <input type="text" name="modelo" placeholder="Modelo" required>
+            <input type="text" name="color" placeholder="Color" required>
+            <input type="text" name="n_disponibles" placeholder="Asientos disponibles" required>
         </div>
 
         <script>
-            const typeSelect = document.getElementById('type');
+            const conductorRadio = document.getElementById('conductor');
             const conductorFields = document.getElementById('conductor-fields');
 
-            typeSelect.addEventListener('change', () => {
-                if (typeSelect.value === 'Conductor') {
+            conductorRadio.addEventListener('change', () => {
+                if (conductorRadio.checked) {
                     conductorFields.style.display = 'block';
                 } else {
                     conductorFields.style.display = 'none';
@@ -58,7 +67,8 @@
             });
         </script>
 
-        <div><input type="submit" value="Register"></div>
+
+        <input type="submit" value="Register">
         <!-- put optional message when passwords dont match-->
 
         <ul>
