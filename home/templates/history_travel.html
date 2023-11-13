@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Travels page</title>
+
+    <!-- Main Content Styles -->
+    <style>
+        /* Center content both horizontally and vertically */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        /* Styles for the main content */
+        .page-content {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-content h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .page-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        /* Styles for the welcome message */
+        .welcome-message {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+</head>
+
+<body>
+    <!-- Include the sidebar HTML -->
+    <div id="sidebar-container">
+
+        <!-- This is where the sidebar from sidebar.html will be included -->
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="page-content" id="main-content">
+        <h1>Travel History</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Driver</th>
+                    <th>Passengers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+                    <tr>
+                        <td>{{ travel.date }}</td>
+                        <td>{{ travel.from }}</td>
+                        <td>{{ travel.to }}</td>
+                        <td>{{ travel.driver }}</td>
+                        <td>{{ travel.passengers }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No travel history found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include the sidebar JavaScript -->
+    <script src="{% static 'js/sidebar.js' %}" ></script>
+
+    <style>
+            /* Adjust main content width when sidebar is open */
+            .page-content {
+        transition: margin-left 0.3s;
+        margin-left: 0; /* Initially, the main content has no margin */
+        }
+    </style>
+

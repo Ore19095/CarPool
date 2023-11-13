@@ -23,8 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login.views.login, name='login'),
     path('init/', login.views.init, name='init'),
-    path('registry/', login.views.register, name='register'),path('home/', home.views.home, name='home'),
+    path('registry/', login.views.register, name='register'),
+    path('forgot/', login.views.forgot, name='forgot'),
+    path('home/', home.views.home, name='home'),
     path('logout/', home.views.logout, name='logout'),
     path('home/contact/', home.views.contact, name='contact'),
     path('home/new_travel/', home.views.new_travel, name='new_travel'),
+    path('home/history_travel/', home.views.history_travel, name='history_travel'),
 ]
