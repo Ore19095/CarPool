@@ -10,7 +10,11 @@ def form_css(request):
 def login(request): 
     # add an user verification here
     context = {}
-    
+    if 'username' in request.session:
+        del request.session['username']
+    if 'user_created' in request.session:
+       del request.session['user_created']
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

@@ -68,6 +68,7 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
+                    <th>Hora</th>
                     <th>Destino</th>
                     <th>Conductor</th>
                     <th>Disponible</th>
@@ -77,8 +78,9 @@
                 {% for travel in travels %}
                     <tr>
                         <td>{{ travel.date }}</td>
+                        <td>{{ travel.time }}</td>
                         <td>{{ travel.to }}</td>
-                        <td>{{ travel.driver }}</td>
+                        <td>{{ travel.person }}</td>
                         <td>{{ travel.n_disponibles }}</td>
                     </tr>
                 {% empty %}
