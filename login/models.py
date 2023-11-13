@@ -12,6 +12,7 @@ class User(models.Model):
     asientos_disponibles = models.IntegerField(default=0)
     car_type = models.CharField(max_length=50, default='None')
     car_branch = models.CharField(max_length=50, default='None')
+    
     # create a string representation of the user model
     def __str__(self):
         return self.username + " " + self.password + " " + self.email\
