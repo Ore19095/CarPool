@@ -3,6 +3,8 @@ from login.models import User
 from home.models import Travels
 # Create your views here.
 def home(request):
+    # get the user object
+    user = User.objects.get(username=request.session['username'])
     if request.method == 'POST':
         date = request.POST.get('fecha')
         time = request.POST.get('hora')
@@ -14,7 +16,7 @@ def home(request):
         new_travel.save()
 
     context = {'name': request.session['username']}
-
+    context['user'] = user
     return render(request, 'welcome.html',context)
 
 def logout(request):
