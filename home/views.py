@@ -24,16 +24,25 @@ def logout(request):
     return render(request, 'login.html')
 
 def history_travel(request):
+    user = User.objects.get(username=request.session['username'])
     # Obtain the informa
     travels = Travels.objects.all()
     context = {'travels': travels}
+    context['user'] = user
     return render(request, 'history_travel.html', context)   
 
 
 def new_travel(request):
-    return render(request, 'new_travel.html')
+    context = {'name': request.session['username']}
+    user = User.objects.get(username=request.session['username'])
+    context['user'] = user
+    return render(request, 'new_travel.html',context)
 
 def contact(request):
+    context = {'name': request.session['username']}
+    
+    user = User.objects.get(username=request.session['username'])
+    context['user'] = user
     # Obtain the informa
     # user = User.objects.filter  , , {'users': user}
-    return render(request, 'contact.html')
+    return render(request, 'contact.html',context)

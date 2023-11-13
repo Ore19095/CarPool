@@ -47,6 +47,16 @@
     <div id="sidebar-container">
 
         <!-- This is where the sidebar from sidebar.html will be included -->
+        {% if user.is_passenger %}
+        <script>
+            const sidebarContainer = document.getElementById('sidebar-container');
+            fetch("{% static 'sidebar_users.html' %}")
+                .then(response => response.text())
+                .then(data => {
+                    sidebarContainer.innerHTML = data;
+                });
+        </script>
+        {% else %}
         <script>
             const sidebarContainer = document.getElementById('sidebar-container');
             fetch("{% static 'sidebar.html' %}")
@@ -55,6 +65,7 @@
                     sidebarContainer.innerHTML = data;
                 });
         </script>
+        {% endif %}
     </div>
     <div class="page-content" id="main-content">
         <form action="/home/" method="post">
