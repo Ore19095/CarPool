@@ -82,8 +82,11 @@
                 background-color: #f2f2f2;
             }
         </style>
-
-        <h1>Travel History</h1>
+        {% if user.is_passanger == 1 %}
+            <h1>Viajes Disponibles</h1>
+        {% else %}
+            <h1>Mis Viajes</h1>
+        {% endif %}
         <table>
             <thead>
                 <tr>
@@ -92,6 +95,40 @@
                     <th>Destino</th>
                     <th>Conductor</th>
                     <th>Disponible</th>
+                    {% if user.is_passanger %}
+                        <th>Unirse</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+                    <tr>
+                        <td>{{ travel.date }}</td>
+                        <td>{{ travel.time }}</td>
+                        <td>{{ travel.to }}</td>
+                        <td>{{ travel.driver }}</td>
+                        <td>{{ travel.n_disponibles }}</td>
+                        {% if user.is_passanger%}
+                            <td>
+                                {% if user.is_passanger %}
+                                    <button>Unirse</button>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_passanger %}6{% else %}5{% endif %}">No travel history found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include the sidebar JavaScript -->
+    <script src="{% static 'js/sidebar.js' %}" ></script>
+
+    <style>
                 </tr>
             </thead>
             <tbody>
