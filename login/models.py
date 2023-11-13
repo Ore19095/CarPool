@@ -17,5 +17,4 @@ class User(models.Model):
     car_color = models.CharField(max_length=50, default='None')
     # create a string representation of the user model
     def __str__(self):
-        return self.username + " " + self.password + " " + self.email\
-              + " " + self.phone 
+        return self.username
